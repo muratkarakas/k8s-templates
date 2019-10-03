@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: simple-rest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-rest
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: simple-rest
+        version: v1
+    spec:
+      containers:
+      - image: mkarakas/simple-rest
+        imagePullPolicy: IfNotPresent
+        name: simple-rest 
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
+            requests:
+              cpu: "100m"
+              memory: "256Mi"

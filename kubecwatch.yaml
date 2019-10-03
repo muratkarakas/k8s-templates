@@ -1,0 +1,14 @@
+rbac:
+  create: true
+resourcesToWatch:
+  daemonset: true
+  deployment: true
+  pod: true
+  replicaset: false
+  replicationcontroller: false
+  services: true
+  secret: true
+  configmap: false
+slack:
+  channel: 'k8s-monitoring'
+  token: 'xoxb-70129570944-660705820019-1jyk77SvLOV81FpTXp5g9pm5'
