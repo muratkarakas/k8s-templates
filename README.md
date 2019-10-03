@@ -1,2 +1,2 @@
-# k8s-tempaltes
+# k8s-templates
 Usefull   Kubernetes  yaml files and commands
