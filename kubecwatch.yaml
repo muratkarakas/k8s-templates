@@ -11,4 +11,4 @@ resourcesToWatch:
   configmap: false
 slack:
   channel: 'k8s-monitoring'
-  token: 'xoxb-70129570944-660705820019-1jyk77SvLOV81FpTXp5g9pm5'
+  token: 'xoxb-7--------'
