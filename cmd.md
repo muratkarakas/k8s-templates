@@ -49,14 +49,15 @@ kubectl --namespace monitoring port-forward svc/grafana 3000
 
 ab -c 10 -n 500  http://localhost:32080/hello
 
+kubectl patch deployment web -p \
+  "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+
 
 helm upgrade --install kubewatch stable/kubewatch --values=kubecwatch.yaml
 
 
 kubectl get deploy -o yaml | linkerd inject - | kubectl apply -f -
 
-kubectl patch deployment web -p \
-  "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
 
 or
 
