@@ -55,6 +55,8 @@ helm upgrade --install kubewatch stable/kubewatch --values=kubecwatch.yaml
 
 kubectl get deploy -o yaml | linkerd inject - | kubectl apply -f -
 
+kubectl patch deployment web -p \
+  "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
 
 or
 
