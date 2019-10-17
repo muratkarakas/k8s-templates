@@ -37,6 +37,10 @@ spec:
           env:
           - name: PROFILE
             value: prod
+          - name: POD_IP
+            valueFrom:
+               fieldRef:
+                 fieldPath: status.podIP      
           resources:
             limits:
               cpu: 750m
