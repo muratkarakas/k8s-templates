@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo
+  namespace: prod
+  labels:
+    app: demo
+spec:
+  replicas: 10
+  strategy: 
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: demo
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      namespace: prod
+      labels:
+        app: demo
+    spec:
+      containers:
+        - name: demo
+          image: mkarakas/simple-rest
+          readinessProbe: 
+            httpGet:
+              path: /settings/ping
+              port: http
+            timeoutSeconds: 10
+            periodSeconds: 30
+          imagePullPolicy: Always
+          ports:
+          - name: http
+            containerPort: 8080
+          env:
+          - name: PROFILE
+            value: prod
+          resources:
+            limits:
+              cpu: 750m
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 768Mi
+      restartPolicy: Always
+
