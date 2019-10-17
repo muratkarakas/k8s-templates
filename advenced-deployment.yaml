@@ -18,7 +18,6 @@ spec:
   revisionHistoryLimit: 1
   template:
     metadata:
-      namespace: prod
       labels:
         app: demo
     spec:
