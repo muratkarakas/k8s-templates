@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: question-two-pod
+  name: question-two-pod
+spec:
+  containers:
+  - image: kubegoldenguide/alpine-spin:1.0.0
+    name: question-two-pod
+    resources: {}
+    envFrom:
+    - configMapRef:
+            name:  app-config
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+
+---
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: IfNotPresent
+    name: nginx
+    resources: {}
+    env:
+    - name: option # name of the env variable
+      valueFrom:
+        configMapKeyRef:
+          name: options # name of config map
+          key: var5 # name of the entity in config map
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
